@@ -7,6 +7,10 @@ const users = require('./MOCK_DATA.json');
 // Middleware for parsing JSON (required for POST and PATCH)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use((req,res,next)=>{
+    console.log("hello from middleware");
+    next();
+})
 
 app.get('/users', (req, res) => {
     const html = `
