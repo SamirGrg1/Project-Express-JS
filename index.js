@@ -38,6 +38,7 @@ app.get('/users', (req, res) => {
 
 // GET route to retrieve all users in JSON format
 app.get('/api/users', (req, res) => {
+    res.setHeader("X-MyName","krishna");
     return res.json(users);
 });
 
