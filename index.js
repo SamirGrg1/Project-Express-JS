@@ -45,6 +45,7 @@ app.get('/api/users', (req, res) => {
 // Route for handling users by ID
 app.route('/api/users/:id')
     .get((req, res) => {
+        
         // Retrieving user by ID
         const id = Number(req.params.id);
         const user = users.find((user) => user.id === id);
@@ -98,6 +99,10 @@ app.route('/api/users/:id')
 // POST route to add a new user
 app.post('/api/users', (req, res) => {
     const body = req.body;
+
+    if(!body || !body.first_name || !body.last_name || !body.gender || !body.email || !body.job_title){
+        return res.status(400).json({msg: "All data are required"})
+    }
 
     // Adding new user with a unique ID
     users.push({ ...body, id: users.length + 1 });
